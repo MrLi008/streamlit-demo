@@ -1,5 +1,4 @@
 matplotlib
 streamlit 
 pandas
-numpy
-time
+numpy==1.24.3
