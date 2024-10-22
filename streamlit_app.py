@@ -2,8 +2,6 @@ import streamlit as st
 
 import pandas as pd  
 import matplotlib.pyplot as plt  
-import plotly.express as px  
-import seaborn as sns  
 import numpy as np  
 import time
 
@@ -174,7 +172,7 @@ with st.expander('数据分析可视化', expanded=False) :
     st.subheader("条形图")  
     # bar_chart = data.plot(kind='bar', x='Category', y='Values', figsize=(10, 5))  
     fig, ax = plt.subplots()
-    bar_chart = sns.barplot(x='Category', y='Values', data=data)
+    ax.bar(df['date'], df['data'])
     st.pyplot(fig)  
     
     # 2. 折线图（动态更新）  
@@ -183,12 +181,14 @@ with st.expander('数据分析可视化', expanded=False) :
     filtered_df = df[df['date'] <= slider]  
     # line_chart = filtered_df.plot(kind='line', x='date', y='data', figsize=(10, 5))  
     fig, ax = plt.subplots()
-    line_chart = sns.lineplot(x='date', y='data', data=filtered_df)
+    ax.plot(filtered_df['date'], filtered_df['data'])
     st.pyplot(fig)  
     
     # 3. 散点图（Plotly）  
     st.subheader("散点图（Plotly）")  
-    fig = px.scatter(data, x='Category', y='Values', title='散点图示例')  
+    fig, ax = plt.subplots()
+    ax.scatter(df['date'], df['data'], )  
+    ax.set_title('散点图示例')
     st.plotly_chart(fig)  
     
     # 4. 热力图（Seaborn）  
@@ -196,7 +196,12 @@ with st.expander('数据分析可视化', expanded=False) :
     # 生成一些随机数据用于热力图  
     fig, ax = plt.subplots()
     heatmap_data = np.random.rand(10, 12)  
-    ax = sns.heatmap(heatmap_data, annot=True, fmt=".2f", cmap='coolwarm')
+    ax.imshow(heatmap_data, cmap='coolwarm')
+    
+    # 在方格上绘制数字
+    for i in range(heatmap_data.shape[0]):  
+        for j in range(heatmap_data.shape[1]):  
+            ax.text(j, i, '{:.2f}'.format(heatmap_data[i, j]), ha='center', va='center', color='w')
     
     # heatmap = sns.heatmap(heatmap_data, annot=True, fmt=".2f", cmap='coolwarm')  
     # st.image(fig, caption='热力图示例', use_column_width=True)  
