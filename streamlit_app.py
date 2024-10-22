@@ -252,20 +252,19 @@ with st.expander('饼图和仪表盘', expanded=False) :
     
     container = st.empty()
     labels = ['A', 'B', 'C', 'D']  
-    while True:
-        sizes = np.random.randint(10, 100, size=4)
+    sizes = np.random.randint(10, 100, size=4)
 
-        # 绘制饼图  
-        fig, ax = plt.subplots()  
-        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140,
-            )  
-        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.  
-        
-        # 在Streamlit中显示图表  
-        container.pyplot(fig)
-        
-        # fig, ax = plt.subplots(subplot_kw=dict(polar=True))
-        # draw(ax)
-        # container.pyplot(fig)
-        
-        time.sleep(0.1)
+    # 绘制饼图  
+    fig, ax = plt.subplots()  
+    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140,
+        )  
+    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.  
+    
+    # 在Streamlit中显示图表  
+    container.pyplot(fig)
+    
+    # fig, ax = plt.subplots(subplot_kw=dict(polar=True))
+    # draw(ax)
+    # container.pyplot(fig)
+    
+    time.sleep(0.1)
