@@ -189,7 +189,7 @@ with st.expander('数据分析可视化', expanded=False) :
     fig, ax = plt.subplots()
     ax.scatter(df['date'], df['data'], )  
     ax.set_title('散点图示例')
-    st.plotly_chart(fig)  
+    st.pyplot(fig)  
     
     # 4. 热力图（Seaborn）  
     st.subheader("热力图（Seaborn）")  
