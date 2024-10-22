@@ -273,3 +273,12 @@ with st.expander('饼图和仪表盘', expanded=False) :
     # container.pyplot(fig)
     
     time.sleep(0.1)
+
+with st.expander('网页', expanded=False) :
+    container = st.empty()
+    
+    # url = container.text_input('请输入网址', )
+    url = 'https://huggingface.co/'
+    if url:
+        from streamlit.components.v1 import iframe
+        iframe(url, width=1920, height=600)
